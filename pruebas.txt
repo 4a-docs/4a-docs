@@ -1,0 +1,180 @@
+-------------------------------------------------
+Login
+mutation LogIn($credentials: LoginInput) {
+  logIn(credentials: $credentials) {
+      token
+      id
+  }
+}
+
+{
+  "credentials": {
+    "email": "anderson@g.com",
+    "password": "12345678"
+  }
+}
+
+-------------------------------------------------
+traer usuario autenticado por id
+query UserById($userByIdId: Int!) {
+  userById(id: $userByIdId) {
+    name
+    last_name
+    email
+    role
+    identification  
+  }
+}
+
+{
+  "userByIdId": 1
+}
+nota: agregar token en authorization (headers)
+
+--------------------------------------------------
+Doctors
+query Doctors {
+  doctors {
+    id
+    name
+    email  
+  }
+}
+nota: agregar token en authorization (headers)
+
+---------------------------------------------------
+crearAgendas (inserción multiple)
+mutation Mutation($dataAgendas: AppointmentsInput!) {
+  crearAgendas(dataAgendas: $dataAgendas) {
+    id
+    doctor
+    start_date
+    start_hour  
+  }
+}
+{
+  "dataAgendas": {
+    "doctor": "12",
+    "start_hour": "09:00",
+    "start_date": "2021-12-15"
+  }
+}
+nota: agregar token en authorization (headers)
+
+----------------------------------------------------
+Crear Agenda
+mutation Mutation($dataAgenda: AppointmentsInput!) {
+  crearAgenda(dataAgenda: $dataAgenda) {
+      id
+      doctor
+      start_hour
+      start_date
+  }
+}
+{
+  "dataAgenda": {
+    "doctor": "10",
+    "start_hour": "10:00",
+    "start_date": "2021-12-16"
+  }
+}
+nota: agregar token en authorization (headers)
+
+-----------------------------------------------------
+Registro de usuario paciente
+mutation Mutation($userInformation: RegisterUserInput) {
+  registerUser(userInformation: $userInformation) {
+      id
+      name
+      last_name
+      email
+      role  
+  }
+}
+{
+  "userInformation": {
+    "name": "Julian",
+    "last_name": "Perez",
+    "identification": "1000569123",
+    "phone": "310247895",
+    "eps": "Famisanar",
+    "birthdate": "1999-10-25",
+    "email": "julianpe@g.com",
+    "password": "12345678",
+    "password_confirmation": "12345678"
+  }
+}
+nota: no necesita token en authorization
+
+---------------------------------------------------------
+Crear usuario doctor
+mutation Mutation($doctorInformation: DoctorCreateInput) {
+  doctorCreate(doctorInformation: $doctorInformation) {
+      id
+      name
+      last_name
+      email
+      role
+  }
+}
+{
+  "doctorInformation": {
+    "name": "Santiago",
+    "last_name": "Rodriguez",
+    "identification": "1078569123",
+    "phone": "310245412",
+    "eps": "Famisanar",
+    "birthdate": "2000-10-25",
+    "email": "santiagoro@g.com",
+    "password": "12345678"
+  }
+}
+nota: agregar token en authorization (headers)
+
+---------------------------------------------------------
+Traer todas las agendas de un doctor en especifico por id
+query Query($doctor: String!) {
+  obtenerAgendasDoctor(doctor: $doctor) {
+      id
+      doctor  
+      start_date
+      start_hour
+  }
+}
+{
+  "doctor": "12"
+}
+nota: agregar token en authorization (headers)
+
+---------------------------------------------------------
+Trae información de un usuario doctor por id
+query Query($doctorByIdId: Int!) {
+  doctorById(id: $doctorByIdId) {
+      id
+      name
+      last_name
+      email
+      role  
+  }
+}
+{
+  "doctorByIdId": 1
+}
+nota: agregar token en authorization (headers)
+
+----------------------------------------------------------
+Traer agenda por id
+query Query($obtenerAgendaId: String) {
+  obtenerAgenda(id: $obtenerAgendaId) {
+      doctor
+      start_date
+      start_hour
+  }
+}
+{
+  "obtenerAgendaId": "61b52ba513435c2252b9382a"
+}
+nota: agregar token en authorization (headers)
+
+
+
